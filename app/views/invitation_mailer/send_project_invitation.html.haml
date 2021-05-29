@@ -1,0 +1,2 @@
+= "#{@user.name} has invited you to project called #{@project_name}, join the project by"
+= link_to "Clicking here", "#{Rails.application.config.project_url}/projects/accept_invitation?t=#{@token}",method: :get, target: "_blank"

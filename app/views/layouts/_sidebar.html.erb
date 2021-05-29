@@ -1,0 +1,33 @@
+<div class="s-layout">
+<!-- Sidebar -->
+<div class="s-layout__sidebar">
+  <a class="s-sidebar__trigger" href="#0">
+     <i class="fa fa-bars"></i>
+  </a>
+
+  <nav class="s-sidebar__nav">
+     <ul>
+        <li class= "<%= "active" if params[:controller] == "projects"%>">
+           <%=link_to  projects_path, class:"s-sidebar__nav-link" do%>
+            <i class="fa fa-th-large"></i><em>Projects</em>
+          <%end%>
+        </li>
+        <li class= "<%= "active" if params[:controller] == "users"%>">
+           <%=link_to "#", class:"s-sidebar__nav-link" do %>
+             <i class="fa fa-user"></i><em>My Profile</em>
+            <%end%>
+        </li>
+        <li class= "<%= "active" if params[:controller] == "sessions"%>">
+           <%=link_to logout_path, method: :delete, class:"s-sidebar__nav-link" do %>
+              <i class="fa fa-sign-out"></i><em>Sign out</em>
+           <%end%>
+        </li>
+     </ul>
+  </nav>
+</div>
+
+<!-- Content -->
+<main class="s-layout__content">
+ <%=yield%>
+</main>
+</div>

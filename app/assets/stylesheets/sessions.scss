@@ -1,0 +1,103 @@
+// Place all the styles related to the sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// body{
+//   background-color: #fff;
+//   min-height: 100vh;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+.home-page{
+  .container{
+    max-width: 400px;
+    border-radius: 20px; 
+  }
+
+  .card{
+    border-radius: 20px;
+    height: 600px;
+    // background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    background-image: linear-gradient(to right, #243e56, #aaebef) ;
+    border: none;
+    box-shadow: 0px 5px 8px #414141;
+    z-index: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .circle{
+    position: absolute;
+    bottom: -230px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    clip-path: circle(50%);
+    height: 700px;
+    width: 700px;
+    z-index: -1;
+    overflow: hidden;
+    
+  }
+
+  .my-hed{
+    margin-top: 30px;
+    font-size: 32px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    background-image: linear-gradient(to right, #243e56, #aaebef) ;
+    color: transparent;
+    background-clip: text;
+    -webkit-bakcground-clip: text;
+  }
+
+  .button{
+    width: 250px;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #243e56, #aaebef) ;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .myInput{
+    width: 220px;
+    padding: 10px;
+    padding-left: 40px;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #243e56, #aaebef) ;
+    color: #fff;
+    border: none;
+    display: block;
+    &::placeholder{
+      color: #fff;
+      opacity: .6;
+    }
+    &:focus{
+      border: none;
+      outline: none;
+    }
+  }
+  .input-icon{
+    position: relative;
+    display: block;
+    left:-87px;
+    top:30px;
+    color: #fff
+  }
+
+  @media(max-width: 768px){
+    .container{
+      max-width: 100%
+    }
+  }
+}
+input.myInput.invalid-input, input.invalid-input{
+  border: 1px solid #ff0000;
+}

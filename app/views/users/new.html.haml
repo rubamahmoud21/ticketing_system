@@ -1,0 +1,32 @@
+.home-page
+  .container
+    .card
+      .card-body
+        .circle
+        %header.my-hed.text-center
+          %i.fa.fa-user-o
+          %p
+            SIGN UP
+        .main-form.text-center
+          = form_for @user, class: 'main-form text-center', remote: true do |f|
+            .form-group.my-0
+              %label.my-0
+                %i.fa.fa-address-book.input-icon
+                = f.text_field :name, class: "myInput", placeholder: "Full name", er: "first_name"
+            .form-group.my-0
+              %label.my-0
+                %i.fa.fa-user.input-icon
+                = f.text_field :email, class: "myInput", placeholder: "Email", er: "email"
+            .form-group.my-0
+              %label.my-0
+                %i.fa.fa-lock.input-icon
+                = f.text_field :password, class: "myInput", placeholder: "Password", type: "password", er: "password"
+            .form-group.mt-5
+              %label
+                = submit_tag "Continue", class: "form-control button "
+            .form-group.my-1
+              %small 
+                Already have an account?
+                =link_to "/", class: "btn btn-link p-0" do
+                  .my-0
+                    %small Sign in

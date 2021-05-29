@@ -1,0 +1,4 @@
+$(".invalid-input").removeClass("invalid-input");
+<%@user.errors.each do |field| %>
+  $("input[er='<%=field.to_s%>']").addClass("invalid-input");
+<%end%>

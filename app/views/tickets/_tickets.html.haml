@@ -1,0 +1,29 @@
+- ticket_statuses = TicketStatus.pluck(:name, :id) 
+
+.col-md-12.border-top
+  .row.m-2.pointer{'data-toggle': "modal", "data-target": "#addTicket"}
+    Add new Ticket
+  .modal#addTicket
+    =render partial: "tickets/form", locals:{ticket: Ticket.new}
+- if @project.tickets.blank?
+  .col-md-12.border-top
+    .row.m-2
+      There are no tickets
+- @project.tickets.each do |ticket|
+  .border-top{class: "ticket-row-#{ticket.id}"}
+    .row.m-2
+      .col-md-10.col-sm-8
+        =link_to project_ticket_path(project_id:@project.id, id:ticket.id), method: :delete , remote: true do
+          %i.fa.fa-trash.color-red
+        %i.fa.fa-pencil.pointer{"data-target": "#editTicket#{ticket.id}", 'data-toggle': "modal"}
+        .modal{id:"editTicket#{ticket.id}"}
+          =render partial: "tickets/form", locals:{ticket: ticket}
+        = ticket.title
+      .col-md-2.col-sm-4
+        .dropdown.pull-right
+          .dropdown-toggle.pointer{"data-toggle": "dropdown"}
+            =ticket.ticket_status.name
+          .dropdown-menu
+            - ticket_statuses.each do |status|
+              - if ticket.ticket_status_id != status[1]
+                =link_to "#{status[0]}", project_ticket_change_status_path(project_id: @project.id, status_id: status[1], ticket_id: ticket.id), method: :post, class: "dropdown-item"

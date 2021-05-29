@@ -1,0 +1,42 @@
+.row
+  .col-md-12.col-sm-12
+    .p-5.mt-5
+      .section
+        %h2.collpase.pointer
+          %i.fa.fa-caret-down
+          = "Projects(#{@projects.size})"
+        .content
+          .row
+            .col-md-12
+              %button.pull-right.display-modal{type: "button", 'data-toggle': "modal", "data-target": "#addProject", class: "btn btn-link"}
+                %small
+                  %i.fa.fa-plus
+                  Add Project
+              .modal{id:"addProject", role: "dialog"}
+                =render partial: "form", locals:{project: Project.new}
+
+          - if @projects.blank?
+            .col-md-12
+              %small There are no projects
+          
+          - @projects.each do |project|
+            .row.p-2
+              .col-sm-12.col-md-12.border
+                .p-2  
+                  =link_to project.name, project_path(project), class: "btn-link"
+                  %i.fa.fa-trash.pull-right.pointer.color-red{'data-toggle': "modal", "data-target": "#deleteProject"}
+                  .modal#deleteProject
+                    .modal-dialog
+                      .modal-content
+                        .modal-header
+                          %h4.modal-title
+                            Delete porject
+                          %span{type: "button", class:"close" , 'data-dismiss': "modal"}
+                            &times;
+                        .modal-body
+                          Are you sure you want to delete the project? 
+                        .modal-footer
+                          = link_to "Delete", project_path(project), method: :delete, class:"btn btn-primary" 
+                          %button{type: "button", class: "btn btn-dark", 'data-dismiss': "modal"}
+                            Close                       
+                                                    

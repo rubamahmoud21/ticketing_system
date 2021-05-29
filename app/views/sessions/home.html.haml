@@ -1,0 +1,28 @@
+.home-page
+  .container
+    .card
+      .card-body
+        .circle
+        %header.my-hed.text-center
+          %i.fa.fa-user-o
+          %p
+            LOGIN
+        .errormsg
+        = form_tag login_path, class: 'main-form text-center', remote: true do
+          .form-group.my-0
+            %label.my-0
+              %i.fa.fa-user.input-icon
+              = text_field_tag :email,"" ,class: "myInput", placeholder: "email"
+          .form-group.my-0
+            %label.my-0
+              %i.fa.fa-lock.input-icon
+              = text_field_tag :password,"" ,class: "myInput", placeholder: "password", type: "password"
+          .form-group.mt-5
+            %label
+              = submit_tag "Login", class: "form-control button "
+          .form-group.my-1
+            %small 
+              No account? 
+              =link_to new_user_path, class: "btn btn-link p-0" do
+                .my-0
+                  %small Create one!

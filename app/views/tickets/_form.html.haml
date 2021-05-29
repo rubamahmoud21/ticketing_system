@@ -1,0 +1,29 @@
+
+.modal-dialog.ticket-dialog
+  .modal-content
+    .modal-header
+      %h4.modal-title
+        Add Ticket
+      %span{type: "button", class:"close" , 'data-dismiss': "modal"}
+        &times;
+    - url = ticket.new_record? ?  project_tickets_path(project_id: @project.id)  : project_ticket_path(project_id: @project.id, id:ticket.id) 
+    = form_for ticket , url: url , remote: true do |f|
+      .modal-body
+        .form-group
+          .row
+            = f.hidden_field :project_id , value: @project.id
+            .col-md-12
+              = f.label :title
+            .col-md-12
+              = f.text_field :title, class: "w-100 title"
+        .form-group.mt-3
+          .row
+            .col-md-12
+              = f.label :descrition, "Description"
+            .col-md-12
+              = f.text_area :descrition , class: "w-100 ticket-description descrition"           
+      .modal-footer
+        %button{type: "submit", class: "btn btn-primary "}
+          Add
+        %button{type: "button", class: "btn btn-dark", 'data-dismiss': "modal"}
+          Close  

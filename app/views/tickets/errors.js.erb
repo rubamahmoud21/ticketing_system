@@ -1,0 +1,4 @@
+$(".invalid-input").removeClass("invalid-input");
+<%@ticket.errors.each do |field| %>
+  $(".<%=field.to_s%>").addClass("invalid-input");
+<%end%>

@@ -1,0 +1,22 @@
+
+- url = project.new_record? ?  projects_path  : project_path 
+
+.modal-dialog
+  .modal-content
+    .modal-header
+      %h4.modal-title
+        Add Project
+      %span{type: "button", class:"close" , 'data-dismiss': "modal"}
+        &times;
+    = form_for project, url: url, remote: true do |f|
+      .modal-body
+        .form-group
+          .col-md-12
+            = f.label :name 
+          .col-md-12
+            = f.text_field :name, placeholder: "Name", class: "mt-3 w-100 name"
+      .modal-footer
+        %button{type: "submit", class: "btn btn-primary"}
+          Save
+        %button{type: "button", class: "btn btn-dark", 'data-dismiss': "modal"}
+          Close      

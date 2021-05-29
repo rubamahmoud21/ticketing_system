@@ -1,0 +1,43 @@
+.row.project-page
+  .col-md-12.col-sm-12
+    .p-5.mt-5
+      .section
+        %h2.collpase.pointer
+          %i.fa.fa-caret-down
+          = @project.name
+        .content
+          .row.my-2
+            .col-md-12
+              %h6
+                - users = @project.users.size-1
+                = "Members:  you and #{users} #{"other".pluralize(users)}"
+                .pull-right.small{'data-toggle': "modal", "data-target": "#addUserModal"}
+                  %i.fa.fa-plus
+                  Add user
+                .modal#addUserModal
+                  .modal-dialog
+                    .modal-content
+                      .modal-header
+                        %h4.modal-title
+                          Share with users
+                        %span{type: "button", class:"close" , 'data-dismiss': "modal"}
+                          &times;
+                      = form_tag project_send_invitation_path(project_id: @project.id), method: :get do |f|
+                        .modal-body
+                          = select_tag :users, options_for_select([]), class: "select2 selected-user", multiple: true 
+                          - @project.users.each do |user|
+                            .row.border-top.mt-2.pt-2
+                              .col-md-12.small
+                                %i.fa.fa-user-o
+                                =user.name 
+                                %span.text-muted= user.email
+                        .modal-footer
+                          %button{type: "submit", class: "btn btn-primary send-invitation-button", disabled: true}
+                            Done
+                          %button{type: "button", class: "btn btn-dark", 'data-dismiss': "modal"}
+                            Close  
+          %h4
+            Tickets
+          = render partial: "tickets/tickets"
+
+                
